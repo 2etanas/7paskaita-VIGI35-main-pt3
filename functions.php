@@ -169,8 +169,8 @@ function filterClients($klientai) {
 function pagination() {
     
     $klientai = readJson("klientai.json");
-    $klientai = sortClients($klientai);
-    $klientai = filterClients($klientai);
+    $klientai = sortClients($klientai); // sortina ir filtruoja kodal pries pagination
+    $klientai = filterClients($klientai); //sortina ir filtruoja kodal pries pagination
     $kiek = count($klientai);//klientu kieki
     $irasaiPerPuslapi = 15;//kiek irasu bus rodoma viename puslapyje
 
@@ -199,6 +199,7 @@ function pagination() {
     echo "<ul class='pagination'>";
     for($i=1;$i<$puslapiuKiekis+1;$i++) {
         if($i==$page) {
+            //modifikavus linka irasomos get values.
             echo "<li class='page-item active'><a class='page-link' href='klientai.php?page=$i&limit=$irasaiPerPuslapi&sortOrder=$sortOrderReiksme&sortCollumn=$sortCollumnReiksme&miestas=$miestasReiksme&filter='>$i</a></li>";
         } else {
             echo "<li class='page-item'><a class='page-link' href='klientai.php?page=$i&limit=$irasaiPerPuslapi&sortOrder=$sortOrderReiksme&sortCollumn=$sortCollumnReiksme&miestas=$miestasReiksme&filter='>$i</a></li>";
